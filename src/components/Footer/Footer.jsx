@@ -1,4 +1,5 @@
 import './Footer.css'
+import SolvixLogo from '../SolvixLogo/SolvixLogo'
 
 const currentYear = new Date().getFullYear()
 
@@ -18,7 +19,7 @@ export default function Footer() {
               className="footer__logo"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
             >
-              <span className="footer__logo-s">S</span>olvix
+              <SolvixLogo height={30} />
             </a>
             <p className="footer__tagline">
               Building the intelligence behind tomorrow's businesses.

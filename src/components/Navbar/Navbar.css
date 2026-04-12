@@ -35,19 +35,13 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--fs-xl);
-  letter-spacing: -0.02em;
   margin-right: auto;
-  transition: opacity var(--dur-fast);
-  /* Ensure logo is always first */
   order: 0;
+  transition: opacity var(--dur-fast);
+  line-height: 0;
 }
 
 .navbar__logo:hover { opacity: 0.85; }
-.navbar__logo-icon { color: var(--clr-green); font-size: 1.6rem; line-height: 1; }
-.navbar__logo-text { color: var(--clr-white); }
 
 /* ── Desktop Links ── */
 .navbar__links {

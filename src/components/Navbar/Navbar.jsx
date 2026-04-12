@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './Navbar.css'
+import SolvixLogo from '../SolvixLogo/SolvixLogo'
 
 const navLinks = [
   { label: 'Services', href: '#services' },
@@ -100,8 +101,7 @@ export default function Navbar() {
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
             aria-label="Solvix — back to top"
           >
-            <span className="navbar__logo-icon">S</span>
-            <span className="navbar__logo-text">olvix</span>
+            <SolvixLogo height={28} />
           </a>
 
           {/* Desktop Links */}
