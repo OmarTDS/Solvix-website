@@ -87,7 +87,6 @@ export default function SolvixLogo({ iconOnly = false, height = 32, className = 
       {/* ── TEXT SOLVIX (skip if iconOnly) ── */}
       {!iconOnly && (
         <g transform={`translate(${iconSize + gap}, 0)`}>
-          {/* SOLVI — white */}
           <text
             y={textY}
             fontFamily="'Space Grotesk', 'Inter', sans-serif"
@@ -96,19 +95,7 @@ export default function SolvixLogo({ iconOnly = false, height = 32, className = 
             letterSpacing="-0.03em"
             fill="#ffffff"
           >
-            SOLVI
-          </text>
-          {/* X — green, offset after SOLVI */}
-          <text
-            x={textH * 3.05}
-            y={textY}
-            fontFamily="'Space Grotesk', 'Inter', sans-serif"
-            fontWeight="800"
-            fontSize={textH}
-            letterSpacing="-0.03em"
-            fill="#39FF14"
-          >
-            X
+            SOLVI<tspan fill="#39FF14">X</tspan>
           </text>
         </g>
       )}
