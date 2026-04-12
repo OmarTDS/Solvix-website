@@ -7,62 +7,134 @@
   padding-top: 5rem;
 }
 
-/* Background */
-.hero__bg {
+/* =============================================
+   LIQUID GLASS BLOB SCENE (CodePen-inspired)
+   ============================================= */
+
+.scene {
   position: absolute;
   inset: 0;
   z-index: 0;
   will-change: transform;
+  /* SVG gooey filter for liquid morphing effect */
+  filter: url(#goo);
+  overflow: hidden;
 }
 
+/* Grid stays above the filter layer */
 .hero__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  /* Grid must sit above goo filter - moved to separate layer */
+  filter: none;
+  z-index: 1;
 }
 
-.hero__orb {
+/* Blob base */
+.scene__blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
   pointer-events: none;
+  will-change: transform, border-radius;
 }
 
-.hero__orb--1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(57, 255, 20, 0.12) 0%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  animation: orbFloat 12s ease-in-out infinite;
+/* Blob 1 — large green, top-right */
+.scene__blob--1 {
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    rgba(57, 255, 20, 0.28) 0%,
+    rgba(57, 255, 20, 0.10) 45%,
+    transparent 70%
+  );
+  top: -180px;
+  right: -120px;
+  animation: blobDrift1 18s ease-in-out infinite,
+             blobMorph1 12s ease-in-out infinite;
+  filter: blur(60px);
 }
 
-.hero__orb--2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(57, 255, 20, 0.06) 0%, transparent 70%);
-  bottom: 100px;
-  left: -50px;
-  animation: orbFloat 16s ease-in-out infinite reverse;
+/* Blob 2 — medium green, bottom-left */
+.scene__blob--2 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    ellipse at 60% 60%,
+    rgba(57, 255, 20, 0.18) 0%,
+    rgba(0, 200, 0, 0.06) 50%,
+    transparent 70%
+  );
+  bottom: 0px;
+  left: -80px;
+  animation: blobDrift2 22s ease-in-out infinite,
+             blobMorph2 15s ease-in-out infinite;
+  filter: blur(70px);
 }
 
-.hero__orb--3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
-  top: 50%;
-  left: 40%;
-  animation: orbFloat 10s ease-in-out infinite 3s;
+/* Blob 3 — small, centre highlight */
+.scene__blob--3 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(57, 255, 20, 0.12) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 70%
+  );
+  top: 35%;
+  left: 38%;
+  animation: blobDrift3 14s ease-in-out infinite,
+             blobMorph3 9s ease-in-out infinite;
+  filter: blur(55px);
 }
 
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+/* ---- Drift animations ---- */
+@keyframes blobDrift1 {
+  0%   { transform: translate(0px,   0px)   rotate(0deg); }
+  25%  { transform: translate(-40px, 50px)  rotate(90deg); }
+  50%  { transform: translate(30px,  80px)  rotate(180deg); }
+  75%  { transform: translate(60px, -20px)  rotate(270deg); }
+  100% { transform: translate(0px,   0px)   rotate(360deg); }
+}
+
+@keyframes blobDrift2 {
+  0%   { transform: translate(0px, 0px)   scale(1); }
+  33%  { transform: translate(60px, -50px) scale(1.08); }
+  66%  { transform: translate(-30px, 30px) scale(0.94); }
+  100% { transform: translate(0px, 0px)   scale(1); }
+}
+
+@keyframes blobDrift3 {
+  0%   { transform: translate(0px, 0px); }
+  20%  { transform: translate(40px, -30px); }
+  50%  { transform: translate(-50px, 40px); }
+  80%  { transform: translate(20px, 60px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* ---- Morph (border-radius) animations ---- */
+@keyframes blobMorph1 {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%      { border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
+  50%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  75%      { border-radius: 60% 40% 30% 70% / 30% 60% 70% 40%; }
+}
+
+@keyframes blobMorph2 {
+  0%, 100% { border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%; }
+  33%      { border-radius: 70% 30% 40% 60% / 60% 40% 60% 40%; }
+  66%      { border-radius: 50% 50% 30% 70% / 50% 50% 70% 30%; }
+}
+
+@keyframes blobMorph3 {
+  0%, 100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+  50%      { border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%; }
 }
 
 /* Particles */

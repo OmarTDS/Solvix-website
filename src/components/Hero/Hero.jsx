@@ -26,12 +26,12 @@ export default function Hero() {
 
   return (
     <section className="hero" ref={heroRef} id="home">
-      {/* Animated background */}
-      <div className="hero__bg" ref={parallaxRef}>
+      {/* Liquid Glass blob scene */}
+      <div className="scene" aria-hidden="true" ref={parallaxRef}>
+        <div className="scene__blob scene__blob--1"></div>
+        <div className="scene__blob scene__blob--2"></div>
+        <div className="scene__blob scene__blob--3"></div>
         <div className="hero__grid"></div>
-        <div className="hero__orb hero__orb--1"></div>
-        <div className="hero__orb hero__orb--2"></div>
-        <div className="hero__orb hero__orb--3"></div>
       </div>
 
       {/* Floating particles */}
