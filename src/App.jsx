@@ -13,6 +13,15 @@ function App() {
 
   return (
     <>
+      {/* ── Global Liquid Glass Background ── */}
+      <div className="global-scene" aria-hidden="true">
+        <div className="g-blob g-blob--1"></div>
+        <div className="g-blob g-blob--2"></div>
+        <div className="g-blob g-blob--3"></div>
+        <div className="g-blob g-blob--4"></div>
+        <div className="g-grid"></div>
+      </div>
+
       <Navbar />
       <main>
         <Hero />

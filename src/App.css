@@ -1,11 +1,160 @@
-/* App-level resets — component styles live in their own CSS files */
-
+/* App shell */
 #root {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 main {
   flex: 1;
+}
+
+/* =============================================
+   GLOBAL LIQUID GLASS BLOB BACKGROUND
+   Fixed behind the whole page
+   ============================================= */
+
+.global-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Shared blob base */
+.g-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, border-radius;
+}
+
+/* Blob 1 — large, top-right green */
+.g-blob--1 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    rgba(57, 255, 20, 0.22) 0%,
+    rgba(57, 255, 20, 0.06) 50%,
+    transparent 70%
+  );
+  top: -200px;
+  right: -180px;
+  filter: blur(80px);
+  animation: gBlobDrift1 20s ease-in-out infinite,
+             gBlobMorph1 14s ease-in-out infinite;
+}
+
+/* Blob 2 — medium, bottom-left green */
+.g-blob--2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at 60% 60%,
+    rgba(57, 255, 20, 0.14) 0%,
+    rgba(0, 180, 0, 0.04) 55%,
+    transparent 72%
+  );
+  bottom: -100px;
+  left: -120px;
+  filter: blur(90px);
+  animation: gBlobDrift2 26s ease-in-out infinite,
+             gBlobMorph2 18s ease-in-out infinite;
+}
+
+/* Blob 3 — mid-page accent */
+.g-blob--3 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(57, 255, 20, 0.10) 0%,
+    rgba(255, 255, 255, 0.02) 55%,
+    transparent 72%
+  );
+  top: 40%;
+  left: 35%;
+  filter: blur(70px);
+  animation: gBlobDrift3 16s ease-in-out infinite,
+             gBlobMorph3 11s ease-in-out infinite;
+}
+
+/* Blob 4 — lower-right subtle */
+.g-blob--4 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(57, 255, 20, 0.08) 0%,
+    transparent 68%
+  );
+  bottom: 25%;
+  right: 10%;
+  filter: blur(65px);
+  animation: gBlobDrift4 22s ease-in-out infinite reverse,
+             gBlobMorph1 13s ease-in-out infinite reverse;
+}
+
+/* Grid overlay */
+.g-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 90%);
+}
+
+/* ---- Drift animations ---- */
+@keyframes gBlobDrift1 {
+  0%   { transform: translate(0,   0)   rotate(0deg); }
+  25%  { transform: translate(-50px, 60px)  rotate(90deg); }
+  50%  { transform: translate(40px,  100px) rotate(180deg); }
+  75%  { transform: translate(80px, -30px)  rotate(270deg); }
+  100% { transform: translate(0,   0)   rotate(360deg); }
+}
+
+@keyframes gBlobDrift2 {
+  0%   { transform: translate(0, 0)    scale(1); }
+  33%  { transform: translate(70px, -60px) scale(1.1); }
+  66%  { transform: translate(-40px, 50px) scale(0.92); }
+  100% { transform: translate(0, 0)    scale(1); }
+}
+
+@keyframes gBlobDrift3 {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(50px, -40px); }
+  50%  { transform: translate(-60px, 55px); }
+  80%  { transform: translate(30px, 70px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes gBlobDrift4 {
+  0%   { transform: translate(0, 0)   scale(1); }
+  40%  { transform: translate(-50px, -40px) scale(1.06); }
+  70%  { transform: translate(30px, 60px) scale(0.96); }
+  100% { transform: translate(0, 0)   scale(1); }
+}
+
+/* ---- Morph keyframes ---- */
+@keyframes gBlobMorph1 {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%      { border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
+  50%      { border-radius: 30% 70% 50% 50% / 50% 60% 30% 60%; }
+  75%      { border-radius: 60% 40% 30% 70% / 30% 60% 70% 40%; }
+}
+
+@keyframes gBlobMorph2 {
+  0%, 100% { border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%; }
+  33%      { border-radius: 70% 30% 40% 60% / 60% 40% 60% 40%; }
+  66%      { border-radius: 50% 50% 30% 70% / 50% 50% 70% 30%; }
+}
+
+@keyframes gBlobMorph3 {
+  0%, 100% { border-radius: 50% 50% 50% 50%; }
+  50%      { border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%; }
 }

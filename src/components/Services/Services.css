@@ -1,16 +1,7 @@
 .services {
-  background: var(--clr-bg);
+  background: transparent;
   position: relative;
-}
-
-.services::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--clr-border), transparent);
+  z-index: 1;
 }
 
 .services__header {
@@ -18,36 +9,49 @@
   margin-bottom: var(--space-16);
 }
 
-/* Grid */
+/* Grid — glass grid */
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--clr-border);
-  border: 1px solid var(--clr-border);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  backdrop-filter: blur(2px);
 }
 
 /* Card */
 .service-card {
-  background: var(--clr-bg);
+  /* Glass panel */
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
   padding: var(--space-10);
   position: relative;
   cursor: default;
-  transition: background var(--dur-normal) var(--ease-out);
+  transition: background var(--dur-normal) var(--ease-out),
+              box-shadow var(--dur-normal) var(--ease-out);
   overflow: hidden;
 }
 
+/* Glass shimmer top-left */
 .service-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--clr-green-glow);
-  opacity: 0;
-  transition: opacity var(--dur-normal) var(--ease-out);
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.01) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity var(--dur-normal);
 }
 
+/* Animated bottom border */
 .service-card::after {
   content: '';
   position: absolute;
@@ -55,22 +59,18 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--clr-green);
+  background: linear-gradient(90deg, transparent, var(--clr-green), transparent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-normal) var(--ease-out);
 }
 
-.service-card:hover::before {
-  opacity: 1;
-}
-
-.service-card:hover::after {
-  transform: scaleX(1);
-}
+.service-card:hover::after { transform: scaleX(1); }
 
 .service-card:hover {
-  background: rgba(57, 255, 20, 0.02);
+  background: rgba(57, 255, 20, 0.04);
+  box-shadow: inset 0 0 60px rgba(57, 255, 20, 0.05),
+              0 0 0 1px rgba(57, 255, 20, 0.1);
 }
 
 /* Icon */
@@ -78,8 +78,9 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-md);
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.10);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,12 +92,12 @@
 }
 
 .service-card:hover .service-card__icon {
-  background: rgba(57, 255, 20, 0.1);
-  border-color: var(--clr-green);
-  box-shadow: var(--shadow-green-sm);
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.35);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.2),
+              inset 0 1px 0 rgba(57, 255, 20, 0.2);
 }
 
-/* Title */
 .service-card__title {
   font-size: var(--fs-lg);
   font-weight: 700;
@@ -106,11 +107,8 @@
   transition: color var(--dur-fast);
 }
 
-.service-card:hover .service-card__title {
-  color: var(--clr-green);
-}
+.service-card:hover .service-card__title { color: var(--clr-green); }
 
-/* Desc */
 .service-card__desc {
   font-size: var(--fs-sm);
   color: var(--clr-white-60);
@@ -120,7 +118,6 @@
   z-index: 1;
 }
 
-/* Tags */
 .service-card__tags {
   display: flex;
   flex-wrap: wrap;
@@ -132,8 +129,9 @@
 
 .service-tag {
   padding: 0.2rem 0.6rem;
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius-full);
   font-size: 0.7rem;
   font-weight: 600;
@@ -144,11 +142,11 @@
 }
 
 .service-card:hover .service-tag {
-  border-color: rgba(57, 255, 20, 0.2);
+  border-color: rgba(57, 255, 20, 0.25);
   color: var(--clr-green);
+  background: rgba(57, 255, 20, 0.06);
 }
 
-/* Arrow */
 .service-card__arrow {
   color: var(--clr-white-40);
   transition: all var(--dur-normal) var(--ease-out);
@@ -161,19 +159,8 @@
   transform: translateX(4px);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+@media (max-width: 1024px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) {
-  .services__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    padding: var(--space-8);
-  }
+  .services__grid { grid-template-columns: 1fr; }
+  .service-card { padding: var(--space-8); }
 }

@@ -1,6 +1,7 @@
 .process {
-  background: var(--clr-bg);
+  background: transparent;
   position: relative;
+  z-index: 1;
 }
 
 .process__header {
@@ -8,7 +9,6 @@
   margin-bottom: var(--space-16);
 }
 
-/* Steps container */
 .process__steps {
   display: flex;
   flex-direction: column;
@@ -24,9 +24,7 @@
   padding-bottom: var(--space-10);
 }
 
-.process-step:last-child {
-  padding-bottom: 0;
-}
+.process-step:last-child { padding-bottom: 0; }
 
 /* Connector line */
 .process-step__connector {
@@ -35,17 +33,26 @@
   top: 64px;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--clr-green-dim), transparent);
+  background: linear-gradient(
+    to bottom,
+    rgba(57, 255, 20, 0.5),
+    rgba(57, 255, 20, 0.05) 80%,
+    transparent
+  );
   z-index: 0;
 }
 
-/* Icon */
+/* Icon — glass orb */
 .process-step__icon {
   width: 64px;
   height: 64px;
   border-radius: var(--radius-md);
-  background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3),
+              inset 0 1px 0 rgba(255,255,255,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,15 +63,42 @@
   transition: all var(--dur-normal) var(--ease-out);
 }
 
+/* Shimmer on icon */
+.process-step__icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.10) 0%,
+    transparent 55%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
 .process-step:hover .process-step__icon {
-  background: rgba(57, 255, 20, 0.1);
-  border-color: var(--clr-green);
-  box-shadow: var(--shadow-green-sm);
+  background: rgba(57, 255, 20, 0.10);
+  border-color: rgba(57, 255, 20, 0.35);
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.2),
+              inset 0 1px 0 rgba(57, 255, 20, 0.2);
 }
 
 /* Content */
 .process-step__content {
   padding-top: var(--space-4);
+  /* Subtle glass pill on hover */
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+  transition: background var(--dur-normal) var(--ease-out),
+              border-color var(--dur-normal) var(--ease-out);
+  border: 1px solid transparent;
+}
+
+.process-step:hover .process-step__content {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255,255,255,0.06);
 }
 
 .process-step__num {
@@ -82,9 +116,7 @@
   transition: color var(--dur-fast);
 }
 
-.process-step:hover .process-step__title {
-  color: var(--clr-green);
-}
+.process-step:hover .process-step__title { color: var(--clr-green); }
 
 .process-step__desc {
   font-size: var(--fs-base);
@@ -93,24 +125,12 @@
   max-width: 60ch;
 }
 
-/* Responsive */
 @media (max-width: 640px) {
   .process-step {
     grid-template-columns: 48px 1fr;
     gap: var(--space-6);
   }
-
-  .process-step__icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .process-step__connector {
-    left: 23px;
-    top: 48px;
-  }
-
-  .process-step__title {
-    font-size: var(--fs-lg);
-  }
+  .process-step__icon { width: 48px; height: 48px; }
+  .process-step__connector { left: 23px; top: 48px; }
+  .process-step__title { font-size: var(--fs-lg); }
 }
