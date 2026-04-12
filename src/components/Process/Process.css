@@ -1,0 +1,116 @@
+.process {
+  background: var(--clr-bg);
+  position: relative;
+}
+
+.process__header {
+  max-width: 620px;
+  margin-bottom: var(--space-16);
+}
+
+/* Steps container */
+.process__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Step */
+.process-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-8);
+  position: relative;
+  padding-bottom: var(--space-10);
+}
+
+.process-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Connector line */
+.process-step__connector {
+  position: absolute;
+  left: 31px;
+  top: 64px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--clr-green-dim), transparent);
+  z-index: 0;
+}
+
+/* Icon */
+.process-step__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-green);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: all var(--dur-normal) var(--ease-out);
+}
+
+.process-step:hover .process-step__icon {
+  background: rgba(57, 255, 20, 0.1);
+  border-color: var(--clr-green);
+  box-shadow: var(--shadow-green-sm);
+}
+
+/* Content */
+.process-step__content {
+  padding-top: var(--space-4);
+}
+
+.process-step__num {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--clr-green);
+  margin-bottom: var(--space-2);
+}
+
+.process-step__title {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  transition: color var(--dur-fast);
+}
+
+.process-step:hover .process-step__title {
+  color: var(--clr-green);
+}
+
+.process-step__desc {
+  font-size: var(--fs-base);
+  color: var(--clr-white-60);
+  line-height: 1.75;
+  max-width: 60ch;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .process-step {
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-6);
+  }
+
+  .process-step__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .process-step__connector {
+    left: 23px;
+    top: 48px;
+  }
+
+  .process-step__title {
+    font-size: var(--fs-lg);
+  }
+}
