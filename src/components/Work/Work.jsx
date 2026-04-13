@@ -2,6 +2,42 @@ import './Work.css'
 
 const cases = [
   {
+    id: 'bladehaus',
+    label: 'Barbershop & Beauty',
+    title: 'BladeHaus — Smart Barbershop Booking Platform',
+    desc: 'Built an intelligent booking platform for barbershops that lets clients pick their style and preferred time slot. Dynamic pricing fills empty slots by lowering prices during off-peak hours, driving higher occupancy and reducing no-shows.',
+    results: ['35% fewer no-shows', '2x booking capacity', '90% slot fill rate'],
+    tech: ['Dynamic Pricing', 'Booking Engine', 'Style Catalog'],
+    accent: '#39FF14',
+  },
+  {
+    id: 'aicareerschool',
+    label: 'EdTech',
+    title: 'AI Career School — Arabic AI Course Platform',
+    desc: 'Built a full Arabic-language course platform teaching AI image and video creation tools. Includes video hosting, enrollment management, promo codes, and integrated payment with InstaPay and Paymob for the Egyptian market.',
+    results: ['Full Arabic RTL support', 'Sub-2s page loads', '4 payment methods'],
+    tech: ['Next.js SSR', 'Supabase', 'Bunny Stream'],
+    accent: '#39FF14',
+  },
+  {
+    id: 'trendpredictor',
+    label: 'Marketing Intelligence',
+    title: 'Trend Predictor — Market Intelligence Engine',
+    desc: 'Scrapes social media and ad platforms to surface what your customers want, what content is trending in your niche, and which ads are actually working — delivered as actionable weekly briefs with velocity scoring.',
+    results: ['7-day trend lead time', '5 platforms tracked', 'Weekly actionable briefs'],
+    tech: ['Social Scraping', 'Trend Scoring', 'Ad Intelligence'],
+    accent: '#39FF14',
+  },
+  {
+    id: 'loqta',
+    label: 'Real Estate',
+    title: 'Loqta — AI-Powered Real Estate Platform',
+    desc: 'Built a modern property listing and search platform for the Egyptian market. Intelligent filtering, map-based browsing, and automated lead capture turn casual browsers into qualified buyer inquiries.',
+    results: ['3x lead conversion', '60% faster property matching', 'Bilingual EN/AR'],
+    tech: ['Property Search', 'Map Integration', 'Lead Capture'],
+    accent: '#39FF14',
+  },
+  {
     id: 'nexora',
     label: 'E-Commerce',
     title: 'Nexora — Intelligent Inventory & Demand Forecasting',
