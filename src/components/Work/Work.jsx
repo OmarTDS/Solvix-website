@@ -58,7 +58,7 @@ const cases = [
   {
     id: 'trendpredictor',
     label: 'Marketing Intelligence',
-    title: 'Trend Predictor — Market Intelligence Engine',
+    title: 'Trend Predictor — A Market Intelligence Engine',
     desc: 'Scrapes social media and ad platforms to surface what your customers want, what content is trending in your niche, and which ads are actually working — delivered as actionable weekly briefs with velocity scoring.',
     results: ['7-day trend lead time', '5 platforms tracked', 'Weekly actionable briefs'],
     tech: ['Social Scraping', 'Trend Scoring', 'Ad Intelligence'],
