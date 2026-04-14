@@ -14,7 +14,7 @@ const cases = [
     id: 'aicareerschool',
     label: 'EdTech',
     title: 'AI Career School — Arabic AI Course Platform',
-    desc: 'Built a full Arabic-language course platform teaching AI image and video creation tools. Includes video hosting, enrollment management, promo codes, and integrated payment with InstaPay and Paymob for the Egyptian market.',
+    desc: 'Built a full Arabic-language course platform teaching AI image and video creation. Includes video hosting, enrollment management, promo codes, and integrated payment with InstaPay and Paymob for the Egyptian market.',
     results: ['Full Arabic RTL support', 'Sub-2s page loads', '4 payment methods'],
     tech: ['Next.js SSR', 'Supabase', 'Bunny Stream'],
     accent: '#39FF14',
