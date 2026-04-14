@@ -10,6 +10,7 @@ const cases = [
     results: ['35% fewer no-shows', '2x booking capacity', '90% slot fill rate'],
     tech: ['Dynamic Pricing', 'Booking Engine', 'Style Catalog'],
     accent: '#39FF14',
+    url: 'https://golden-cut-booking.vercel.app/',
   },
   {
     id: 'aicareerschool',
