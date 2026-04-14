@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Work.css'
 
 const cases = [
@@ -36,6 +37,7 @@ const cases = [
     results: ['3x lead conversion', '60% faster property matching', 'Bilingual EN/AR'],
     tech: ['Property Search', 'Map Integration', 'Lead Capture'],
     accent: '#39FF14',
+    url: 'https://loqta-your-great-catch.vercel.app/',
   },
   {
     id: 'nexora',
@@ -67,6 +69,8 @@ const cases = [
 ]
 
 export default function Work() {
+  const [activeDemo, setActiveDemo] = useState(null)
+
   return (
     <section className="work section" id="work">
       <div className="container">
@@ -107,6 +111,16 @@ export default function Work() {
                       <span key={t} className="case-tech-tag">{t}</span>
                     ))}
                   </div>
+
+                  {/* Try It button - only shows if url exists */}
+                  {c.url && (
+                    <button
+                      className="case-card__demo-btn"
+                      onClick={() => setActiveDemo(c)}
+                    >
+                      Try It Live →
+                    </button>
+                  )}
                 </div>
 
                 <div className="case-card__right">
@@ -128,6 +142,23 @@ export default function Work() {
           ))}
         </div>
       </div>
+
+      {/* Demo Modal */}
+      {activeDemo && (
+        <div className="demo-modal-overlay" onClick={() => setActiveDemo(null)}>
+          <div className="demo-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="demo-modal__header">
+              <span className="demo-modal__title">{activeDemo.title}</span>
+              <button className="demo-modal__close" onClick={() => setActiveDemo(null)}>✕</button>
+            </div>
+            <iframe
+              src={activeDemo.url}
+              className="demo-modal__iframe"
+              title={activeDemo.title}
+            />
+          </div>
+        </div>
+      )}
     </section>
   )
 }
