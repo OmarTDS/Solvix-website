@@ -223,7 +223,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="contact__info-label">Email</div>
-                    <a href="mailto:omar@solvix.soltutions" className="contact__info-value">omar@solvix.solutions</a>
+                    <a href="mailto:omar@solvix.solutions" className="contact__info-value">omar@solvix.solutions</a>
                   </div>
                 </div>
               </div>

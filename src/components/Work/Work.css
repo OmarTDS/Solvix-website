@@ -234,28 +234,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1rem 1.5rem;
   background: #0a0a0a;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Keeps header pinned above the iframe at all times */
+  flex-shrink: 0;
 }
 
 .demo-modal__title {
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .demo-modal__close {
-  background: none;
-  border: none;
+  /* Generously-sized tap target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  transition: color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .demo-modal__close:hover {
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.4);
   color: #39FF14;
 }
 
@@ -263,4 +279,36 @@
   flex: 1;
   width: 100%;
   border: none;
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  /* Full-screen on mobile so header stays pinned at top */
+  .demo-modal-overlay {
+    align-items: flex-start;
+  }
+
+  .demo-modal {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+  }
+
+  .demo-modal__header {
+    padding: 0.75rem 1rem;
+    /* Ensure header sits above the iOS safe area */
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .demo-modal__title {
+    font-size: 0.85rem;
+  }
+
+  /* Larger close button on mobile for easy tap */
+  .demo-modal__close {
+    min-width: 48px;
+    min-height: 48px;
+    font-size: 1.3rem;
+  }
 }

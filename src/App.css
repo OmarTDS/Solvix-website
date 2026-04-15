@@ -23,8 +23,9 @@ main {
   overflow: hidden;
 }
 
-/* ── Mobile: lock body scroll when menu open ── */
-body.menu-open {
+/* ── Mobile: lock body scroll when menu or demo modal open ── */
+body.menu-open,
+body.demo-open {
   overflow: hidden;
 }
 

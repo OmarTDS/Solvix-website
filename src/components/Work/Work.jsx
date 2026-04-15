@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Work.css'
 
 const cases = [
@@ -72,6 +72,17 @@ const cases = [
 
 export default function Work() {
   const [activeDemo, setActiveDemo] = useState(null)
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setActiveDemo(null) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
+  useEffect(() => {
+    document.body.classList.toggle('demo-open', !!activeDemo)
+    return () => document.body.classList.remove('demo-open')
+  }, [activeDemo])
 
   return (
     <section className="work section" id="work">
