@@ -101,7 +101,7 @@ export default function Navbar() {
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
             aria-label="Solvix — back to top"
           >
-            <SolvixLogo height={35} />
+            <SolvixLogo height={40} />
           </a>
 
           {/* Desktop Links */}
