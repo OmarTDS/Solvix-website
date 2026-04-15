@@ -282,6 +282,34 @@
   min-height: 0;
 }
 
+/* Floating close button — rendered outside the modal, always on top */
+.demo-modal__close-float {
+  position: fixed;
+  /* Top-right, clear of the iOS status bar */
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+  z-index: 10000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none; /* desktop: header close button is enough */
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.demo-modal__close-float:hover {
+  background: rgba(57, 255, 20, 0.15);
+  border-color: rgba(57, 255, 20, 0.5);
+}
+
 @media (max-width: 768px) {
   /* Full-screen on mobile so header stays pinned at top */
   .demo-modal-overlay {
@@ -297,7 +325,6 @@
 
   .demo-modal__header {
     padding: 0.75rem 1rem;
-    /* Ensure header sits above the iOS safe area */
     padding-top: max(0.75rem, env(safe-area-inset-top));
   }
 
@@ -305,10 +332,14 @@
     font-size: 0.85rem;
   }
 
-  /* Larger close button on mobile for easy tap */
   .demo-modal__close {
     min-width: 48px;
     min-height: 48px;
     font-size: 1.3rem;
+  }
+
+  /* Show the floating close button on mobile */
+  .demo-modal__close-float {
+    display: flex;
   }
 }

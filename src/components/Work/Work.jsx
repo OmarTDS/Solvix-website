@@ -158,19 +158,27 @@ export default function Work() {
 
       {/* Demo Modal */}
       {activeDemo && (
-        <div className="demo-modal-overlay" onClick={() => setActiveDemo(null)}>
-          <div className="demo-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="demo-modal__header">
-              <span className="demo-modal__title">{activeDemo.title}</span>
-              <button className="demo-modal__close" onClick={() => setActiveDemo(null)}>✕</button>
+        <>
+          <div className="demo-modal-overlay" onClick={() => setActiveDemo(null)}>
+            <div className="demo-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="demo-modal__header">
+                <span className="demo-modal__title">{activeDemo.title}</span>
+                <button className="demo-modal__close" onClick={() => setActiveDemo(null)}>✕</button>
+              </div>
+              <iframe
+                src={activeDemo.url}
+                className="demo-modal__iframe"
+                title={activeDemo.title}
+              />
             </div>
-            <iframe
-              src={activeDemo.url}
-              className="demo-modal__iframe"
-              title={activeDemo.title}
-            />
           </div>
-        </div>
+          {/* Floating close — always on top, always reachable on mobile */}
+          <button
+            className="demo-modal__close-float"
+            onClick={() => setActiveDemo(null)}
+            aria-label="Close demo"
+          >✕</button>
+        </>
       )}
     </section>
   )
