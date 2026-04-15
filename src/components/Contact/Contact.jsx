@@ -200,7 +200,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="contact__info-label">Phone</div>
-                    <a href="tel:+44000000000" className="contact__info-value">+44 (0) 000 000 0000</a>
+                    <a href="tel:+201099641622" className="contact__info-value">+44 (0) 000 000 0000</a>
                   </div>
                 </div>
                 <div className="contact__info-item">
@@ -211,7 +211,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="contact__info-label">Email</div>
-                    <a href="mailto:hello@solvix.io" className="contact__info-value">hello@solvix.io</a>
+                    <a href="mailto:omar@solvix.soltutions" className="contact__info-value">omar@solvix.solutions</a>
                   </div>
                 </div>
               </div>
