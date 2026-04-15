@@ -38,14 +38,25 @@ export default function Contact() {
     e.preventDefault()
     setStatus('sending')
 
-    // Simulate form submission (replace with EmailJS when email is configured)
-    await new Promise((r) => setTimeout(r, 1500))
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }])
 
-    // TODO: Replace with real EmailJS call:
-    // await emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', e.target, 'PUBLIC_KEY')
+      if (error) throw error
 
-    setStatus('sent')
-    setForm({ name: '', phone: '', email: '', message: '', service: '' })
+      setStatus('sent')
+      setForm({ name: '', phone: '', email: '', message: '', service: '' })
+    } catch (err) {
+      console.error('Submission error:', err)
+      setStatus('error')
+    }
   }
 
   return (
