@@ -200,7 +200,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="contact__info-label">Phone</div>
-                    <a href="tel:+201099641622" className="contact__info-value">+44 (0) 000 000 0000</a>
+                    <a href="tel:+201099641622" className="contact__info-value">+201099641622</a>
                   </div>
                 </div>
                 <div className="contact__info-item">
