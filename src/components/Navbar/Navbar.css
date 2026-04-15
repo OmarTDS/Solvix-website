@@ -11,18 +11,33 @@
   transition: background var(--dur-normal) var(--ease-out),
               border-color var(--dur-normal) var(--ease-out),
               box-shadow var(--dur-normal) var(--ease-out),
-              padding var(--dur-normal) var(--ease-out);
+              padding var(--dur-normal) var(--ease-out),
+              top var(--dur-normal) var(--ease-out),
+              left var(--dur-normal) var(--ease-out),
+              right var(--dur-normal) var(--ease-out),
+              border-radius var(--dur-normal) var(--ease-out),
+              margin var(--dur-normal) var(--ease-out);
   padding-block: 1rem;
 }
 
 .navbar--scrolled {
+  top: 12px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 900px;
   background: rgba(5, 5, 5, 0.55);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
-              inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  padding-block: 0.75rem;
+              0 0 0 1px rgba(255, 255, 255, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.07),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
 }
 
 .navbar__inner {
@@ -88,6 +103,7 @@
   font-size: var(--fs-xs);
   padding: 0.55rem 1.1rem;
   order: 2;
+  border-radius: 9999px;
 }
 
 /* ── Hamburger ── */
@@ -149,15 +165,16 @@
 /* ── Mobile menu ── */
 .navbar__mobile {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  top: calc(100% + 8px);
+  left: 8px;
+  right: 8px;
   z-index: 999;
   /* Glass panel */
   background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
               inset 0 1px 0 rgba(255, 255, 255, 0.06);
   /* Hidden state */
@@ -265,6 +282,7 @@
   justify-content: center;
   font-size: var(--fs-sm);
   padding: 1rem;
+  border-radius: 9999px;
 }
 
 .navbar__mobile-note {
@@ -286,6 +304,13 @@
   /* Show hamburger */
   .navbar__hamburger {
     display: flex;
+    border-radius: 9999px;
+  }
+
+  .navbar--scrolled {
+    width: calc(100% - 32px);
+    border-radius: 24px;
+    padding-inline: 1rem;
   }
 }
 
@@ -304,5 +329,10 @@
 @media (max-width: 380px) {
   .navbar__logo {
     font-size: var(--fs-lg);
+  }
+
+  .navbar--scrolled {
+    width: calc(100% - 24px);
+    border-radius: 20px;
   }
 }
