@@ -29,6 +29,7 @@ const cases = [
     results: ['7-day trend lead time', '5 platforms tracked', 'Weekly actionable briefs'],
     tech: ['Social Scraping', 'Trend Scoring', 'Ad Intelligence'],
     accent: '#39FF14',
+    url: 'https://trendsetter-insight-hub.vercel.app/',
   },
   {
     id: 'loqta',
