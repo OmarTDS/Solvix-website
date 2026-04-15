@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './Contact.css'
+import { supabase } from '../lib/supabase'
 
 const dataFlowSteps = [
   {
