@@ -314,6 +314,7 @@
   /* Full-screen on mobile so header stays pinned at top */
   .demo-modal-overlay {
     align-items: center;
+    padding-top: 70px;
   }
 
   .demo-modal {
