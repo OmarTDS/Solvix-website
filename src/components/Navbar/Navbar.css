@@ -55,45 +55,68 @@
 
 .navbar__logo:hover { opacity: 0.85; }
 
-/* ── Desktop Links ── */
+/* ── Desktop links — glass pill container ── */
 .navbar__links {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--space-1);
   order: 1;
+  /* Segmented picker glass pill */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Spring sliding indicator */
+.navbar__link-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: calc(var(--radius-full) - 2px);
+  background: linear-gradient(
+    135deg,
+    rgba(57, 255, 20, 0.12) 0%,
+    rgba(57, 255, 20, 0.06) 100%
+  );
+  border: 1px solid rgba(57, 255, 20, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 18px rgba(57, 255, 20, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 0;
+  /* iOS-style spring — slight overshoot */
+  transition:
+    left    0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width   0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s  ease;
 }
 
 .navbar__link {
-  padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 1.1rem;
   font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--clr-white-60);
-  border-radius: var(--radius-sm);
-  transition: color var(--dur-fast);
-  position: relative;
-  /* Min touch target */
-  min-height: 44px;
+  border-radius: var(--radius-full);
+  min-height: 36px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+  transition: color var(--dur-fast);
 }
 
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 16px;
-  height: 2px;
-  background: var(--clr-green);
-  border-radius: var(--radius-full);
-  transition: transform var(--dur-normal) var(--ease-out);
-}
-
-.navbar__link:hover { color: var(--clr-white); }
-.navbar__link:hover::after,
-.navbar__link--active::after { transform: translateX(-50%) scaleX(1); }
-.navbar__link--active { color: var(--clr-white); }
+.navbar__link:hover       { color: var(--clr-white); }
+.navbar__link--active     { color: var(--clr-green); }
 
 /* ── Desktop CTA ── */
 .navbar__cta {
