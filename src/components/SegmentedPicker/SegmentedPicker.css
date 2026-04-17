@@ -1,0 +1,98 @@
+/* ============================================
+   CLEAR SEGMENTED PICKER
+   Glass pill container with spring indicator
+   ============================================ */
+
+.seg-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* Liquid glass container */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  /* Inset highlight */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Spring-animated indicator ── */
+.seg-picker__indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: calc(var(--radius-full) - 2px);
+  /* Glass pill fill */
+  background: linear-gradient(
+    135deg,
+    rgba(57, 255, 20, 0.12) 0%,
+    rgba(57, 255, 20, 0.06) 100%
+  );
+  border: 1px solid rgba(57, 255, 20, 0.30);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 20px rgba(57, 255, 20, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 0;
+  /* Spring physics — cubic-bezier(0.34, 1.56, 0.64, 1) gives iOS-like overshoot */
+  transition:
+    left   0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width  0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
+}
+
+/* ── Tab buttons ── */
+.seg-picker__tab {
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 1.15rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--clr-white-40);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  cursor: pointer;
+  /* Min touch target */
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color var(--dur-fast) ease;
+}
+
+.seg-picker__tab:hover {
+  color: var(--clr-white-80);
+}
+
+.seg-picker__tab--active {
+  color: var(--clr-green);
+}
+
+/* ── Mobile: allow horizontal scroll if too many tabs ── */
+@media (max-width: 600px) {
+  .seg-picker {
+    max-width: 100%;
+    overflow-x: auto;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .seg-picker::-webkit-scrollbar {
+    display: none;
+  }
+
+  .seg-picker__tab {
+    padding: 0.45rem 0.9rem;
+    font-size: var(--fs-xs);
+  }
+}
